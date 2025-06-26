@@ -86,7 +86,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
     MainFrame.BackgroundColor3 = MainColor
     MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
     MainFrame.Size = UDim2.new(0, 720, 0, 500)
-    MainFrame.BackgroundTransparency = 0.15
+    MainFrame.BackgroundTransparency = 0.10
     MainFrame.BorderSizePixel = 0
 
     MainCorner.CornerRadius = UDim.new(0, 18)

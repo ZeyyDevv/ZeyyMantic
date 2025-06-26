@@ -269,4 +269,13 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
     end
     return Tabs
 end
+
+local function RemoveOldZeyyMantic()
+    local old = game.CoreGui:FindFirstChild("ZeyyManticUI")
+    if old then
+        old:Destroy()
+    end
+end
+RemoveOldZeyyMantic()
+
 return ZeyyMantic 

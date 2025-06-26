@@ -1,8 +1,11 @@
 -- ZeyyMantic UI Library
 -- Dibuat dengan style dan warna berbeda dari Flux
 local ZeyyMantic = {RainbowColorValue = 0, HueSelectionPosition = 0}
--- Dark mode: abu gelap, Tab biru
-local MainColor = Color3.fromRGB(30, 30, 40) -- Abu gelap (dark)
+-- Dark mode: abu gelap, Title biru, Tab abu terang, Tab aktif/hover biru
+local MainColor = Color3.fromRGB(30, 30, 40) -- Abu gelap (background)
+local TitleColor = Color3.fromRGB(52, 152, 219) -- Biru (title)
+local TabColor = Color3.fromRGB(60, 65, 80) -- Abu terang (tab)
+local TabActiveColor = Color3.fromRGB(52, 152, 219) -- Biru (tab aktif/hover)
 local AccentColor = Color3.fromRGB(52, 152, 219) -- Biru (tab)
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -91,7 +94,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
 
     TitleBar.Name = "TitleBar"
     TitleBar.Parent = MainFrame
-    TitleBar.BackgroundColor3 = MainColor
+    TitleBar.BackgroundColor3 = TitleColor
     TitleBar.Size = UDim2.new(1, 0, 0, 48)
     TitleBar.BorderSizePixel = 0
 
@@ -159,7 +162,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
         local TabTitle = Instance.new("TextLabel")
         Tab.Name = "Tab"
         Tab.Parent = TabHolder
-        Tab.BackgroundColor3 = AccentColor
+        Tab.BackgroundColor3 = TabColor
         Tab.Size = UDim2.new(1, -16, 0, 40)
         Tab.AutoButtonColor = true
         Tab.Font = Enum.Font.FredokaOne
@@ -212,16 +215,27 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
             Container.Visible = true
             for _, v in pairs(TabHolder:GetChildren()) do
                 if v:IsA("TextButton") then
-                    v.BackgroundTransparency = 0.08
+                    v.BackgroundColor3 = TabColor
                 end
             end
-            Tab.BackgroundTransparency = 0
+            Tab.BackgroundColor3 = TabActiveColor
         end)
         -- Tab pertama auto aktif
         if #TabHolder:GetChildren() == 2 then
-            Tab.BackgroundTransparency = 0
+            Tab.BackgroundColor3 = TabActiveColor
             Container.Visible = true
         end
+        -- Hover effect
+        Tab.MouseEnter:Connect(function()
+            if Tab.BackgroundColor3 ~= TabActiveColor then
+                Tab.BackgroundColor3 = TabActiveColor
+            end
+        end)
+        Tab.MouseLeave:Connect(function()
+            if not Container.Visible then
+                Tab.BackgroundColor3 = TabColor
+            end
+        end)
         local Content = {}
         function Content:Button(text, callback)
             local Btn = Instance.new("TextButton")

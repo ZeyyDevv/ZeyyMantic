@@ -1,8 +1,9 @@
 -- ZeyyMantic UI Library
 -- Dibuat dengan style dan warna berbeda dari Flux
 local ZeyyMantic = {RainbowColorValue = 0, HueSelectionPosition = 0}
-local MainColor = Color3.fromRGB(155, 89, 182) -- Ungu
-local AccentColor = Color3.fromRGB(46, 204, 113) -- Hijau
+-- Dark mode: abu gelap, Tab biru
+local MainColor = Color3.fromRGB(30, 30, 40) -- Abu gelap (dark)
+local AccentColor = Color3.fromRGB(52, 152, 219) -- Biru (tab)
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
@@ -82,7 +83,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
     MainFrame.BackgroundColor3 = MainColor
     MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
     MainFrame.Size = UDim2.new(0, 720, 0, 500)
-    MainFrame.BackgroundTransparency = 0.05
+    MainFrame.BackgroundTransparency = 0.15
     MainFrame.BorderSizePixel = 0
 
     MainCorner.CornerRadius = UDim.new(0, 18)
@@ -90,7 +91,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
 
     TitleBar.Name = "TitleBar"
     TitleBar.Parent = MainFrame
-    TitleBar.BackgroundColor3 = AccentColor
+    TitleBar.BackgroundColor3 = MainColor
     TitleBar.Size = UDim2.new(1, 0, 0, 48)
     TitleBar.BorderSizePixel = 0
 
@@ -101,7 +102,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
     TitleLabel.Size = UDim2.new(0, 300, 1, 0)
     TitleLabel.Font = Enum.Font.FredokaOne
     TitleLabel.Text = title
-    TitleLabel.TextColor3 = Color3.fromRGB(255,255,255)
+    TitleLabel.TextColor3 = Color3.fromRGB(220,220,220)
     TitleLabel.TextSize = 28
     TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -112,7 +113,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
     SubLabel.Size = UDim2.new(0, 300, 0, 20)
     SubLabel.Font = Enum.Font.Gotham
     SubLabel.Text = subtitle
-    SubLabel.TextColor3 = Color3.fromRGB(220,220,220)
+    SubLabel.TextColor3 = Color3.fromRGB(180,180,180)
     SubLabel.TextSize = 14
     SubLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -163,7 +164,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
         Tab.AutoButtonColor = true
         Tab.Font = Enum.Font.FredokaOne
         Tab.Text = ""
-        Tab.BackgroundTransparency = 0.15
+        Tab.BackgroundTransparency = 0.08
         Tab.BorderSizePixel = 0
 
         TabIcon.Name = "TabIcon"
@@ -195,7 +196,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
         Container.CanvasSize = UDim2.new(0, 0, 0, 0)
         Container.ScrollBarThickness = 6
         Container.Visible = false
-        Container.ScrollBarImageColor3 = MainColor
+        Container.ScrollBarImageColor3 = AccentColor
         ContainerLayout.Name = "ContainerLayout"
         ContainerLayout.Parent = Container
         ContainerLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -211,7 +212,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
             Container.Visible = true
             for _, v in pairs(TabHolder:GetChildren()) do
                 if v:IsA("TextButton") then
-                    v.BackgroundTransparency = 0.15
+                    v.BackgroundTransparency = 0.08
                 end
             end
             Tab.BackgroundTransparency = 0
@@ -229,7 +230,7 @@ function ZeyyMantic:Window(title, subtitle, mainclr, toclose)
             Btn.Size = UDim2.new(1, 0, 0, 38)
             Btn.Font = Enum.Font.GothamBold
             Btn.Text = text
-            Btn.TextColor3 = Color3.fromRGB(255,255,255)
+            Btn.TextColor3 = AccentColor
             Btn.TextSize = 16
             Btn.AutoButtonColor = true
             Btn.BackgroundTransparency = 0.08
